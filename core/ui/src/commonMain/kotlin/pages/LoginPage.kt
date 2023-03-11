@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 
 
 @Composable
-fun LoginFeature(uiState: LoginScreenState, onLoginClick: () -> Unit) {
+fun LoginFeature(modelState: LoginModelState, uiState: LoginScreenState) {
     LoginScreen(
         modifier = Modifier.fillMaxSize(),
         uiState = uiState,
-        onLoginClick = onLoginClick
+        onLoginClick = { modelState.login(uiState.id, uiState.password) }
     )
 }

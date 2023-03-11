@@ -8,11 +8,12 @@ import com.arkivanov.essenty.parcelable.Parcelize
 import pages.HomePageComponent
 import pages.LoginPageComponent
 
+internal val navigation = StackNavigation<RootComponent.Config>()
+
 class RootComponent(
     componentContext: ComponentContext
 ) : ComponentContext by componentContext {
 
-    private val navigation = StackNavigation<Config>()
 
     private val _childStack =
         childStack(
@@ -27,7 +28,7 @@ class RootComponent(
     private fun createChild(config: Config, componentContext: ComponentContext): RootComponent.Child =
         when (config) {
             Config.HomeConfig -> Child.HomePage(HomePageComponent(componentContext))
-            Config.LoginConfig -> Child.LoginPage(LoginPageComponent(componentContext, navigation))
+            Config.LoginConfig -> Child.LoginPage(LoginPageComponent(componentContext))
         }
 
     sealed class Config : Parcelable {
