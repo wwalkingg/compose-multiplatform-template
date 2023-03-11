@@ -17,6 +17,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(projects.libs.resourceLoader)
+                implementation(libs.decompose)
 
             }
         }

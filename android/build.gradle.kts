@@ -7,6 +7,8 @@ plugins {
 dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(projects.core.ui)
+    implementation(libs.decompose)
+    implementation(libs.decompose.compose.android)
 }
 
 android {

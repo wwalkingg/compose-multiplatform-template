@@ -23,7 +23,6 @@ dependencyResolutionManagement {
     }
 }
 
-
 rootProject.name = "compose-multiplatform-template"
 
 include(":android", ":desktop")
@@ -35,3 +34,4 @@ include(":core:model")
 include(":core:network")
 
 include(":feature:home")
+include(":feature:login")

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.parcelize)
 }
 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 kotlin {
@@ -17,7 +18,11 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material3)
+                implementation(libs.decompose)
+                implementation(libs.decompose.compose.multiplatform)
+                api(libs.kotlinx.coroutines.core)
                 api(projects.feature.home)
+                api(projects.feature.login)
             }
         }
         val androidMain by getting {
