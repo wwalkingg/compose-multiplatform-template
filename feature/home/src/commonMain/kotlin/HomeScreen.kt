@@ -16,7 +16,11 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     swiperUIState: SwiperUIState,
     recommendsUIState: RecommendsUIState,
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    onAllCourseClick: () -> Unit,
+    onPersonalHealthClick: () -> Unit,
+    onTodoClick: () -> Unit,
+    onFindPartnerClick: () -> Unit
 ) {
     Scaffold(
         modifier,
@@ -42,12 +46,20 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 FunctionalMenus.values().forEach {
+                    val onClick = {
+                        when (it) {
+                            FunctionalMenus.AllCourse -> onAllCourseClick()
+                            FunctionalMenus.PersonalHealth -> onPersonalHealthClick()
+                            FunctionalMenus.TODO -> onTodoClick()
+                            FunctionalMenus.FindPartner -> onFindPartnerClick()
+                        }
+                    }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onPrimaryContainer) {
                             Icon(
                                 modifier = Modifier.size(42.dp).clip(CircleShape)
                                     .background(MaterialTheme.colorScheme.primaryContainer)
-                                    .clickable { }
+                                    .clickable { onClick() }
                                     .padding(10.dp),
                                 painter = painterResources(it.painterResource),
                                 contentDescription = null,
@@ -56,7 +68,7 @@ fun HomeScreen(
                             Text(
                                 it.menuName,
                                 style = MaterialTheme.typography.labelMedium,
-                                modifier = Modifier.clickable { })
+                                modifier = Modifier.clickable { onClick() })
                         }
                     }
                 }

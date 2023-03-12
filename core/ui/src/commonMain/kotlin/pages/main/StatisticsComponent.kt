@@ -1,14 +1,20 @@
 package pages.main
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import ModelState
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.essenty.instancekeeper.getOrCreate
+import kotlinx.coroutines.launch
 
 
 class StatisticsComponent(componentContext: ComponentContext) :
     ComponentContext by componentContext {
-    @Composable
-    fun compose(){
-        Text("Statistics")
+    val modelState = instanceKeeper.getOrCreate { StatisticsModelState() }
+}
+
+class StatisticsModelState : ModelState() {
+    fun loadData(){
+        coroutineScope.launch {
+
+        }
     }
 }

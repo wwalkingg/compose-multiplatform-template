@@ -8,7 +8,7 @@ plugins {
 kotlin {
     android()
     jvm("desktop") {
-        jvmToolchain(17)
+        jvmToolchain(11)
     }
     sourceSets {
         val commonMain by getting {
@@ -23,8 +23,14 @@ kotlin {
                 api(projects.feature.login)
                 implementation(projects.core.network)
                 implementation(projects.core.model)
+                implementation(projects.core.datastore)
                 implementation(projects.libs.resourceLoader)
                 implementation(libs.accompanist.pager)
+                implementation(projects.feature.allCourse)
+                implementation(projects.feature.courseDetail)
+                implementation(projects.feature.statusPage)
+                implementation(projects.feature.search)
+                implementation(projects.feature.me)
             }
         }
         val androidMain by getting {
@@ -48,7 +54,7 @@ android {
         compileSdk = 33
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }

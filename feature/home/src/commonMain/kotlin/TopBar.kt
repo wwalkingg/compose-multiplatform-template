@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TopBar(onSearchClick: () -> Unit) {
+internal fun TopBar(onSearchClick: () -> Unit) {
     Box(modifier = Modifier.fillMaxWidth().height(50.dp).padding(8.dp)) {
         Image(
             painter = painterResources("logo.png"),
@@ -17,7 +17,7 @@ fun TopBar(onSearchClick: () -> Unit) {
                 Alignment.Center
             ).fillMaxHeight().padding(4.dp)
         )
-        IconButton(onClick = {}, modifier = Modifier.align(Alignment.CenterEnd)) {
+        IconButton(onClick = onSearchClick, modifier = Modifier.align(Alignment.CenterEnd)) {
             Icon(
                 painter = painterResources("magnifying_glass.xml"),
                 contentDescription = null,

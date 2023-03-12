@@ -8,7 +8,7 @@ plugins {
 kotlin {
     android()
     jvm("desktop") {
-        jvmToolchain(17)
+        jvmToolchain(11)
     }
     sourceSets {
         val commonMain by getting {
@@ -18,7 +18,8 @@ kotlin {
                 implementation(compose.material3)
                 implementation(projects.libs.resourceLoader)
                 implementation(libs.decompose)
-
+                implementation(projects.core.model)
+                implementation(projects.core.datastore)
             }
         }
         val androidMain by getting {
@@ -43,7 +44,7 @@ android {
         compileSdk = 33
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }

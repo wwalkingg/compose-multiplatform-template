@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun Statistics(modifier: Modifier = Modifier){
-    Text("Statistics")
+fun Statistics(component: StatisticsComponent){
+    Text("统计")
+    Text("")
 }

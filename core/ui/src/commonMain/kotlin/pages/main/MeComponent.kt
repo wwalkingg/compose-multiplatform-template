@@ -1,13 +1,19 @@
 package pages.main
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import ModelState
+import UserInfoLoadState
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.essenty.instancekeeper.getOrCreate
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class MeComponent(componentContext: ComponentContext) :
     ComponentContext by componentContext {
-    @Composable
-    fun compose(){
-        Text("Me")
-    }
+    val modelState = instanceKeeper.getOrCreate { MeModelState() }
+}
+
+class MeModelState : ModelState() {
+    private val _userInfoLoadState = MutableStateFlow(UserInfoLoadState.Loading)
+    val userInfoLoadState = _userInfoLoadState.asStateFlow()
+
 }

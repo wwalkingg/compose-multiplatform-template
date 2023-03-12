@@ -5,8 +5,7 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import pages.LoginPageComponent
-import pages.MainComponent
+import pages.*
 
 internal val navigation = StackNavigation<RootComponent.Config>()
 
@@ -27,6 +26,18 @@ class RootComponent(
         when (config) {
             Config.MainConfig -> Child.MainPage(MainComponent(componentContext))
             Config.LoginConfig -> Child.LoginPage(LoginPageComponent(componentContext))
+            Config.AllCourseConfig -> Child.AllCoursePage(AllCoursePageComponent(componentContext))
+            Config.FindPartnerConfig -> Child.FindPartnerPage(FindPartnerPageComponent(componentContext))
+            Config.PersonalHealthConfig -> Child.PersonalHealthPage(PersonalHealthPageComponent(componentContext))
+            Config.TODOConfig -> Child.TODOPage(TODOPageComponent(componentContext))
+            is Config.CourseDetailConfig -> Child.CourseDetailPage(
+                CourseDetailPageComponent(
+                    componentContext = componentContext,
+                    id = config.id
+                )
+            )
+
+            Config.SearchConfig -> Child.SearchPage(SearchPageComponent(componentContext))
         }
 
     sealed class Config : Parcelable {
@@ -35,10 +46,34 @@ class RootComponent(
 
         @Parcelize
         object LoginConfig : Config()
+
+        @Parcelize
+        object AllCourseConfig : Config()
+
+        @Parcelize
+        object PersonalHealthConfig : Config()
+
+        @Parcelize
+        object TODOConfig : Config()
+
+        @Parcelize
+        object FindPartnerConfig : Config()
+
+        @Parcelize
+        data class CourseDetailConfig(val id: Int) : Config()
+
+        @Parcelize
+        object SearchConfig : Config()
     }
 
     sealed class Child {
         data class MainPage(val component: MainComponent) : Child()
         data class LoginPage(val component: LoginPageComponent) : Child()
+        data class AllCoursePage(val component: AllCoursePageComponent) : Child()
+        data class PersonalHealthPage(val component: PersonalHealthPageComponent) : Child()
+        data class TODOPage(val component: TODOPageComponent) : Child()
+        data class FindPartnerPage(val component: FindPartnerPageComponent) : Child()
+        data class CourseDetailPage(val component: CourseDetailPageComponent) : Child()
+        data class SearchPage(val component: SearchPageComponent) : Child()
     }
 }

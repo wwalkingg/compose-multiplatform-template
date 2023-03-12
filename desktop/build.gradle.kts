@@ -8,10 +8,9 @@ plugins {
 group = "buzz.lnmath"
 version = "1.0"
 
-
 kotlin {
     jvm {
-        jvmToolchain(17)
+        jvmToolchain(11)
         withJava()
     }
     sourceSets {
@@ -23,15 +22,8 @@ kotlin {
                 implementation(libs.decompose.compose.multiplatform)
             }
         }
-        val jvmTest by getting
-        val commonMain by getting {
-            dependencies {
-
-            }
-        }
     }
 }
-
 compose.desktop {
     application {
         mainClass = "MainKt"

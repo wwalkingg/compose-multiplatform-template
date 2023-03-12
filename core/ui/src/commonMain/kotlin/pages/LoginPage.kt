@@ -1,17 +1,25 @@
 package pages
 
+import LoginResultState
 import LoginScreen
-import LoginScreenState
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginFeature(modelState: LoginModelState, uiState: LoginScreenState) {
+fun LoginPage(component: LoginPageComponent) {
+    val loginResultState by component.modelState.loginResultState.collectAsState()
+
     LoginScreen(
         modifier = Modifier.fillMaxSize(),
-        uiState = uiState,
-        onLoginClick = { modelState.login(uiState.id, uiState.password) }
+        id = component.modelState.id,
+        loginResultState = loginResultState,
+        password = component.modelState.password,
+        onIdChange = { component.modelState.id = it },
+        onPasswordChange = { component.modelState.password = it },
+        onLoginClick = { component.modelState.login() }
     )
 }

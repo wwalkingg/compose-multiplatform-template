@@ -22,7 +22,7 @@ fun MainPage(
     statistics: @Composable () -> Unit,
     me: @Composable () -> Unit
 ) {
-    val pagerState = rememberPagerState(0)
+    val pagerState = rememberPagerState(1)
     LaunchedEffect(modelState.menuIndex) {
         pagerState.scrollToPage(modelState.menuIndex)
     }
