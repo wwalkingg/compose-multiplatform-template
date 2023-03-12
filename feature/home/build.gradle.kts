@@ -17,7 +17,9 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(projects.libs.resourceLoader)
-
+                implementation(libs.accompanist.pager)
+                implementation(libs.kotlin.stdlib)
+                implementation(projects.core.model)
             }
         }
         val androidMain by getting {

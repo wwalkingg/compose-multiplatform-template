@@ -1,5 +1,3 @@
-import org.jetbrains.compose.compose
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.compose.multiplatform)
@@ -23,6 +21,10 @@ kotlin {
                 api(libs.kotlinx.coroutines.core)
                 api(projects.feature.home)
                 api(projects.feature.login)
+                implementation(projects.core.network)
+                implementation(projects.core.model)
+                implementation(projects.libs.resourceLoader)
+                implementation(libs.accompanist.pager)
             }
         }
         val androidMain by getting {

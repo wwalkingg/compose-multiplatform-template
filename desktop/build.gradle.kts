@@ -19,6 +19,8 @@ kotlin {
             dependencies {
                 implementation(projects.core.ui)
                 implementation(compose.desktop.currentOs)
+                implementation(libs.decompose)
+                implementation(libs.decompose.compose.multiplatform)
             }
         }
         val jvmTest by getting

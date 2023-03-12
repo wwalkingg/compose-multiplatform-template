@@ -6,8 +6,8 @@ import com.arkivanov.essenty.instancekeeper.InstanceKeeper
 
 @Stable
 class LoginScreenState : InstanceKeeper.Instance {
-    var id by mutableStateOf("")
-    var password by mutableStateOf("")
+    var id by mutableStateOf("123456")
+    var password by mutableStateOf("147258")
 
     override fun onDestroy() {
 
