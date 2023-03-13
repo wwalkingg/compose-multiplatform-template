@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import buzz.lnmath.`async-image`.AsyncImage
 
 @Composable
 fun HomeFeature(modifier: Modifier = Modifier) {
@@ -18,6 +19,7 @@ fun HomeFeature(modifier: Modifier = Modifier) {
             if (this@BoxWithConstraints.maxWidth > 600.dp) {
                 Column(Modifier.weight(1f).background(MaterialTheme.colorScheme.primary)) {
                     Text("HAHAHAHA")
+                    AsyncImage()
                 }
             }
         }

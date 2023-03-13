@@ -28,6 +28,7 @@ rootProject.name = "compose-multiplatform-template"
 
 include(":android", ":desktop")
 include(":libs:resourceLoader")
+include(":libs:asyncImage")
 
 include(":core:ui")
 include(":core:util")
