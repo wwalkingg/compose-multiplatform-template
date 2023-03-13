@@ -7,21 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-@Composable
-private fun Success(
-    modifier: Modifier = Modifier,
-    course: Course,
-    onSubscriptClick: () -> Unit,
-    onCollectClick: () -> Unit,
-) {
-    Column(modifier) {
-        Box(
-            Modifier.fillMaxWidth().height(200.dp).background(MaterialTheme.colorScheme.primaryContainer)
-                .shimmerBackground()
-        )
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CourseDetailScreen(
@@ -40,12 +25,11 @@ fun CourseDetailScreen(
             }
 
             is CourseLoadState.Success -> {
-                Success(
-                    modifier = Modifier.fillMaxSize(),
-                    course = courseLoadState.course,
-                    onSubscriptClick = {},
-                    onCollectClick = {},
-                )
+//                SuccessTest(
+//                    modifier = Modifier.fillMaxSize(),
+//                    course = courseLoadState.course,
+//                    onSubscriptClick = {},
+//                ) {}
             }
         }
     }

@@ -28,6 +28,7 @@ rootProject.name = "compose-multiplatform-template"
 include(":android")
 include(":desktop")
 include(":libs:resourceLoader")
+include(":libs:image-picker")
 
 include(":core:ui")
 include(":core:util")

@@ -3,6 +3,7 @@ package pages
 import Course
 import CourseLoadState
 import ModelState
+import UserCourseResp
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
 import utils.error
@@ -29,7 +30,7 @@ class CourseDetailPageModelState(val id: Int) : ModelState() {
     fun loadData() {
         coroutineScope.launch {
             _courseLoadState.emit(CourseLoadState.Loading)
-            httpClient.get("/getCoursesById?courseId=${id}").success<Course> {
+            httpClient.get("/filter/getCoursesById?courseId=${id}").success<UserCourseResp> {
                 _courseLoadState.emit(CourseLoadState.Success(it))
             }.error {
                 _courseLoadState.emit(CourseLoadState.Error)

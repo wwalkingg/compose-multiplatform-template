@@ -1,13 +1,8 @@
-import org.jetbrains.compose.compose
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.android.library)
 }
-
-group = "buzz.lnmath"
-version = "1.0"
 
 kotlin {
     android()
@@ -19,36 +14,29 @@ kotlin {
             dependencies {
                 api(compose.runtime)
                 api(compose.foundation)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                api(compose.material3)
-                implementation(projects.feature.statusPage)
-                implementation(projects.core.model)
-                implementation(projects.libs.resourceLoader)
-                api(libs.kotlinx.collections.immutable)
-                implementation(libs.kamel.image)
-                implementation(projects.libs.imagePicker)
+                api(compose.ui)
+                api(projects.core.network)
             }
         }
         val androidMain by getting {
             dependencies {
-                api(libs.androidx.appcompat)
-                api(libs.androidx.core.ktx)
+                compileOnly(libs.androidx.appcompat)
+                implementation(libs.androidx.activity.compose)
             }
         }
         val desktopMain by getting {
             dependencies {
-                api(compose.preview)
+                compileOnly(compose.preview)
             }
         }
     }
 }
 
 android {
-    compileSdkVersion(33)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(33)
+        minSdk = 24
+        compileSdk = 33
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

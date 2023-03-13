@@ -1,17 +1,9 @@
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import io.kamel.image.KamelImage
-import io.kamel.image.lazyPainterResource
-import org.jetbrains.skia.impl.Log
 import state.Success
 import state.UserInfoLoadState
 
@@ -26,7 +18,7 @@ fun ModifierUserInfoScreen(
         Box(modifier = Modifier.fillMaxSize().padding(it)) {
             when (userInfoLoadState) {
                 UserInfoLoadState.Error -> {
-                    ErrorPage(onRefreshClick = onRefresh)
+                    Success(modifier = Modifier.fillMaxSize())
                 }
 
                 UserInfoLoadState.Loading -> {
@@ -34,7 +26,8 @@ fun ModifierUserInfoScreen(
                 }
 
                 is UserInfoLoadState.Success -> {
-                    Success(modifier = Modifier.fillMaxSize(), userInfoLoadState.userInfo)
+//                    Success(modifier = Modifier.fillMaxSize(), userInfoLoadState.userInfo)
+                    Success(modifier = Modifier.fillMaxSize())
                 }
             }
         }
