@@ -27,7 +27,7 @@ fun MainPage(
         pagerState.scrollToPage(modelState.menuIndex)
     }
     Scaffold(modifier, bottomBar = {
-        BottomBar {
+        BottomBar(currentIndex = pagerState.currentPage) {
             modelState.menuIndex = it
         }
     }) {
@@ -60,10 +60,10 @@ fun MainPage(
 
 
 @Composable
-internal fun BottomBar(onIndexChange: (Int) -> Unit) {
+internal fun BottomBar(currentIndex:Int,onIndexChange: (Int) -> Unit) {
     BottomAppBar {
-        BottomMenus.values().forEach {
-            val selected = false
+        BottomMenus.values().forEachIndexed { index, it ->
+            val selected = currentIndex == index
             NavigationBarItem(
                 selected = selected,
                 onClick = { onIndexChange(it.ordinal) },

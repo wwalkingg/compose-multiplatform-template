@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.router.stack.push
 import navigation
+import settings
 
 
 @Composable
@@ -25,5 +26,4 @@ fun Home(modifier: Modifier = Modifier, component: HomeComponent) {
         onTodoClick = { navigation.push(RootComponent.Config.TODOConfig) },
         onFindPartnerClick = { navigation.push(RootComponent.Config.FindPartnerConfig) }
     )
-    Text("Home")
 }

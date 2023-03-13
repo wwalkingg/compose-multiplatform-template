@@ -15,6 +15,8 @@ import com.russhwolf.settings.set
 import httpClient
 import io.ktor.client.request.*
 import io.ktor.http.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -42,9 +44,14 @@ class LoginModelState : ModelState() {
                 setBody(LoginParameter(id, password))
             }.success<LoginResp> {
                 settings.set("token", it.token)
-//                settings.set("userInfo",)
+//                settings.set("userInfo", json)
                 _loginResultState.emit(LoginResultState.Success(it))
-                navigation.replaceAll(RootComponent.Config.MainConfig)
+                launch(Dispatchers.Main) {
+                    navigation.replaceAll(RootComponent.Config.MainConfig)
+                }
+                MainScope().launch {
+                    navigation.replaceAll(RootComponent.Config.MainConfig)
+                }
             }.error {
                 _loginResultState.emit(LoginResultState.Error)
                 delay(2000L)

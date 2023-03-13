@@ -1,6 +1,8 @@
 package utils
 
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class ResponseWrapper<T>(
@@ -12,5 +14,5 @@ data class ResponseWrapper<T>(
 @Serializable
 data class ResponseTestWrapper(
     val code: Int,
-    val msg: String
+    val msg: String,
 )

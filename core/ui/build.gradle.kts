@@ -37,11 +37,13 @@ kotlin {
             dependencies {
                 api(libs.androidx.appcompat)
                 api(libs.androidx.core.ktx)
+                implementation(libs.kotlinx.coroutines.android)
             }
         }
         val desktopMain by getting {
             dependencies {
                 api(compose.preview)
+                implementation(libs.kotlinx.coroutines.swing)
             }
         }
     }

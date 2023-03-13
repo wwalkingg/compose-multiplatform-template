@@ -4,13 +4,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
@@ -50,13 +52,23 @@ fun RootContent(component: RootComponent, modifier: Modifier = Modifier) {
                 is RootComponent.Child.SearchPage -> SearchPage(child.component)
             }
         }
-        Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.tertiaryContainer)) {
-            IconButton(onClick = { navigation.pop() }) {
-                Icon(Icons.Default.ArrowBack, contentDescription = null)
-            }
-            IconButton(onClick = { navigation.push(RootComponent.Config.LoginConfig) }) {
-                Icon(Icons.Default.Call, contentDescription = null)
+        if (getPlatform() == "desktop") {
+            Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.tertiaryContainer)) {
+                IconButton(onClick = { navigation.pop() }) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = null)
+                }
+                IconButton(onClick = { navigation.push(RootComponent.Config.LoginConfig) }) {
+                    Icon(Icons.Default.AccountCircle, contentDescription = null)
+                }
+                val clipboardManager = LocalClipboardManager.current
+                IconButton(onClick = {
+                    clipboardManager.setText(AnnotatedString(settings.getStringOrNull("token") ?: ""))
+                }) {
+                    Icon(Icons.Default.Info, contentDescription = null)
+                }
             }
         }
     }
 }
+
+expect fun getPlatform(): String

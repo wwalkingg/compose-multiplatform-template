@@ -15,6 +15,7 @@ kotlin {
                 implementation(libs.ktor.client.logging)
                 implementation(libs.logback.classic)
                 implementation(libs.kotlinx.serialization.json)
+                implementation(projects.core.datastore)
             }
         }
     }

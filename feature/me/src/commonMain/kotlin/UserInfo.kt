@@ -1,6 +1,7 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,17 +15,19 @@ internal fun UserInfo(
     modifier: Modifier = Modifier,
     userInfoLoadState: UserInfoLoadState,
 ) {
-    when (userInfoLoadState) {
-        UserInfoLoadState.Error -> {
-            UserInfoLoading()
-        }
+    Box(modifier) {
+        when (userInfoLoadState) {
+            UserInfoLoadState.Error -> {
+                UserInfoLoading(color = MaterialTheme.colorScheme.errorContainer)
+            }
 
-        UserInfoLoadState.Loading -> {
-            UserInfoLoading()
-        }
+            UserInfoLoadState.Loading -> {
+                UserInfoLoading()
+            }
 
-        is UserInfoLoadState.Success -> {
-            UserInfoSuccess(userInfoLoadState.userInfo)
+            is UserInfoLoadState.Success -> {
+                UserInfoSuccess(userInfoLoadState.userInfo)
+            }
         }
     }
 
@@ -51,18 +54,22 @@ private fun UserInfoSuccess(userInfo: UserInfo) {
 }
 
 @Composable
-private fun UserInfoLoading() {
+private fun UserInfoLoading(color: Color = Color.Gray) {
     Row(
         modifier = Modifier.height(60.dp).fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Box(modifier = Modifier.clip(CircleShape).size(60.dp).background(Color.Gray).shimmerBackground())
+        Box(modifier = Modifier.clip(CircleShape).size(60.dp).background(color).shimmerBackground())
         Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.SpaceAround) {
-            Text("", modifier = Modifier.fillMaxWidth(.5f).shimmerBackground())
+            Text("", modifier = Modifier.fillMaxWidth(.5f).background(color).shimmerBackground())
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                repeat(2){
-                    UserTag(text = " ", color = Color.Unspecified,modifier = Modifier.width(40.dp).shimmerBackground())
+                repeat(2) {
+                    UserTag(
+                        text = " ",
+                        color = Color.Unspecified,
+                        modifier = Modifier.width(40.dp).background(color).shimmerBackground()
+                    )
                 }
             }
         }
