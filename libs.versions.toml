@@ -53,6 +53,8 @@ decompose = "1.0.0"
 logback="1.2.11"
 kotlinx-collections-immutable = "0.3.5"
 multiplatform-settings = "1.0.0"
+kamel-image = "0.4.0"
+kotlin-logging = "4.0.0-beta-23"
 [libraries]
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
@@ -142,6 +144,8 @@ logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.
 multiplatformSettings = { group = "com.russhwolf", name = "multiplatform-settings", version.ref = "multiplatform-settings" }
 multiplatformSettings-noArg = { group = "com.russhwolf", name = "multiplatform-settings-no-arg", version.ref = "multiplatform-settings" }
 multiplatformSettings-coroutines =  { group = "com.russhwolf", name = "multiplatform-settings-coroutines", version.ref = "multiplatform-settings" }
+kamel-image =  { group = "com.alialbaali.kamel", name = "kamel-image", version.ref = "kamel-image" }
+kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging", version.ref = "kotlin-logging" }
 [bundles]
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

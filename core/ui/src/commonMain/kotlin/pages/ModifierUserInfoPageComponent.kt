@@ -1,8 +1,7 @@
-package pages.main
+package pages
 
 import ModelState
 import UserInfo
-import state.UserInfoLoadState
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
 import httpClient
@@ -10,15 +9,15 @@ import io.ktor.client.request.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import state.UserInfoLoadState
 import utils.error
 import utils.success
 
-class MeComponent(componentContext: ComponentContext) :
-    ComponentContext by componentContext {
-    val modelState = instanceKeeper.getOrCreate { MeModelState() }
+class ModifierUserInfoPageComponent(componentContext: ComponentContext) : ComponentContext by componentContext {
+    val modelState = instanceKeeper.getOrCreate { ModifierUserInfoModelState() }
 }
 
-class MeModelState : ModelState() {
+class ModifierUserInfoModelState : ModelState() {
     private val _userInfoLoadState = MutableStateFlow<UserInfoLoadState>(UserInfoLoadState.Loading)
     val userInfoLoadState = _userInfoLoadState.asStateFlow()
 
@@ -26,7 +25,7 @@ class MeModelState : ModelState() {
         loadUserInfo()
     }
 
-    private fun loadUserInfo() {
+    fun loadUserInfo() {
         coroutineScope.launch {
             _userInfoLoadState.emit(UserInfoLoadState.Loading)
             httpClient.get("/filter/getUserById").success<UserInfo> {

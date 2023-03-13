@@ -1,14 +1,10 @@
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -50,6 +46,8 @@ fun RootContent(component: RootComponent, modifier: Modifier = Modifier) {
                 is RootComponent.Child.TODOPage -> TODOPage(child.component)
                 is RootComponent.Child.CourseDetailPage -> CourseDetailPage(child.component)
                 is RootComponent.Child.SearchPage -> SearchPage(child.component)
+                is RootComponent.Child.ModifierPasswordPage -> ModifierPasswordPage(child.component)
+                is RootComponent.Child.ModifierUserInfoPage -> ModifierUserInfoPage(child.component)
             }
         }
         if (getPlatform() == "desktop") {

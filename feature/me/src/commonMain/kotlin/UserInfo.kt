@@ -9,6 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import io.kamel.image.KamelImage
+import io.kamel.image.lazyPainterResource
+import state.UserInfoLoadState
 
 @Composable
 internal fun UserInfo(
@@ -41,9 +44,19 @@ private fun UserInfoSuccess(userInfo: UserInfo) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Box(modifier = Modifier.clip(CircleShape).size(60.dp).background(Color.Gray))
+        KamelImage(
+            modifier = Modifier.clip(CircleShape).requiredSize(60.dp).background(Color.Gray),
+            resource = lazyPainterResource(data = baseUrl + userInfo.avatar),
+            contentDescription = null,
+            onFailure = {
+                Box(
+                    modifier = Modifier.clip(CircleShape).size(60.dp)
+                        .background(MaterialTheme.colorScheme.errorContainer)
+                )
+            }
+        )
         Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.SpaceAround) {
-            Text("手持巨斧的大将军")
+            Text(userInfo.name)
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 repeat(2) {
                     UserTag(text = "参与10个课程")

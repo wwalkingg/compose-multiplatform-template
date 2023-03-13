@@ -38,6 +38,8 @@ class RootComponent(
             )
 
             Config.SearchConfig -> Child.SearchPage(SearchPageComponent(componentContext))
+            Config.ModifierPassword -> Child.ModifierPasswordPage(ModifierPasswordPageComponent(componentContext))
+            Config.ModifierUserInfo -> Child.ModifierUserInfoPage(ModifierUserInfoPageComponent(componentContext))
         }
 
     sealed class Config : Parcelable {
@@ -64,6 +66,12 @@ class RootComponent(
 
         @Parcelize
         object SearchConfig : Config()
+
+        @Parcelize
+        object ModifierUserInfo : Config()
+
+        @Parcelize
+        object ModifierPassword : Config()
     }
 
     sealed class Child {
@@ -75,5 +83,7 @@ class RootComponent(
         data class FindPartnerPage(val component: FindPartnerPageComponent) : Child()
         data class CourseDetailPage(val component: CourseDetailPageComponent) : Child()
         data class SearchPage(val component: SearchPageComponent) : Child()
+        data class ModifierUserInfoPage(val component: ModifierUserInfoPageComponent) : Child()
+        data class ModifierPasswordPage(val component: ModifierPasswordPageComponent) : Child()
     }
 }

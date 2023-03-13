@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.arkivanov.decompose.router.stack.push
+import navigation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -17,6 +19,10 @@ fun Me(component: MeComponent) {
     val userInfoLoadState by component.modelState.userInfoLoadState.collectAsState()
     MeScreen(
         modifier = Modifier.fillMaxSize(),
-        userInfoLoadState = userInfoLoadState
+        userInfoLoadState = userInfoLoadState,
+        onCollectClick = {},
+        onModifierPasswordClick = { navigation.push(RootComponent.Config.ModifierPassword) },
+        onModifierUserInfoClick = { navigation.push(RootComponent.Config.ModifierUserInfo) },
+        onLogoutClick = {}
     )
 }

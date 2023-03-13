@@ -16,14 +16,14 @@ import utils.ResponseTestWrapper
 private val token = settings.getStringOrNull("token") ?: ""
 
 private val json = Json { ignoreUnknownKeys = true }
-
+val baseUrl = "http://172.18.5.33:8082/"
 @OptIn(InternalAPI::class)
 val httpClient = HttpClient(CIO) {
     defaultRequest {
 //        url("http://lnmath.buzz:9021")
-        url("http://172.18.5.33:8082")
+        url(baseUrl)
         headers {
-            append("Authorization", "Bearer ${token}")
+            append("Authorization", token)
         }
     }
     install(ContentNegotiation) {

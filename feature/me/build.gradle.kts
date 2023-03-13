@@ -25,6 +25,7 @@ kotlin {
                 implementation(projects.core.model)
                 implementation(projects.libs.resourceLoader)
                 api(libs.kotlinx.collections.immutable)
+                implementation(libs.kamel.image)
             }
         }
         val androidMain by getting {

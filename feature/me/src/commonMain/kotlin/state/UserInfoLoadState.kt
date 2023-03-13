@@ -1,3 +1,7 @@
+package state
+
+import UserInfo
+
 sealed interface UserInfoLoadState {
     object Loading : UserInfoLoadState
     object Error : UserInfoLoadState
