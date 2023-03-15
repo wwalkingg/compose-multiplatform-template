@@ -25,8 +25,8 @@ kotlin {
                 implementation(projects.core.model)
                 implementation(projects.libs.resourceLoader)
                 api(libs.kotlinx.collections.immutable)
-                implementation(libs.kamel.image)
                 implementation(projects.libs.imagePicker)
+                implementation(projects.feature.base)
             }
         }
         val androidMain by getting {

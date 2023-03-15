@@ -1,7 +1,9 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -26,13 +28,12 @@ fun HomeScreen(
         modifier,
         topBar = { TopBar(onSearchClick) },
     ) {
-        Column(modifier = Modifier.fillMaxSize().padding(it)) {
+        Column(modifier = Modifier.fillMaxSize().padding(it).verticalScroll(rememberScrollState())) {
             // swiper
             val modifier0: Modifier = when (swiperUIState) {
                 SwiperUIState.Fail -> Modifier.background(MaterialTheme.colorScheme.errorContainer)
                 SwiperUIState.Loading -> Modifier.background(MaterialTheme.colorScheme.primaryContainer)
                     .shimmerBackground()
-
                 is SwiperUIState.Success -> Modifier
             }
             Swiper(
@@ -73,7 +74,32 @@ fun HomeScreen(
                     }
                 }
             }
-            //
+            // recommends
+            Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                when (recommendsUIState) {
+                    RecommendsUIState.Fail -> {
+                        repeat(10) {
+                            Box(
+                                modifier = Modifier.fillMaxWidth().height(80.dp)
+                                    .background(MaterialTheme.colorScheme.error).shimmerBackground()
+                            )
+                        }
+                    }
+
+                    RecommendsUIState.Loading -> {
+                        repeat(10) {
+                            Box(
+                                modifier = Modifier.fillMaxWidth().height(80.dp)
+                                    .background(MaterialTheme.colorScheme.primaryContainer).shimmerBackground()
+                            )
+                        }
+                    }
+
+                    is RecommendsUIState.Success -> {
+
+                    }
+                }
+            }
         }
     }
 }

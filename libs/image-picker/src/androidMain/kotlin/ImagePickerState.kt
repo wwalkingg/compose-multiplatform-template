@@ -9,11 +9,18 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import java.io.InputStream
 
 
 actual class ImagePickerStateImpl() : ImagePickerState {
-    actual var painter by mutableStateOf<Painter?>(null)
-        internal set
+    internal var _inputStream = mutableStateOf<InputStream?>(null)
+    actual override val inputStream = _inputStream.value
+    actual override val painter: Painter?
+        get() {
+            if (inputStream == null) return null
+            val image = BitmapFactory.decodeStream(inputStream).asImageBitmap()
+            return BitmapPainter(image)
+        }
 
     var _launcher: ManagedActivityResultLauncher<String, Uri?>? = null
 
@@ -24,6 +31,8 @@ actual class ImagePickerStateImpl() : ImagePickerState {
     override fun pick() {
         _launcher!!.launch("image/*")
     }
+
+
 }
 
 @Composable
@@ -34,9 +43,7 @@ actual fun rememberImagePickerState(): ImagePickerState {
         contract = ActivityResultContracts.GetContent(),
         onResult = { uri ->
             if (uri != null) {
-                val inputStream = context.contentResolver.openInputStream(uri)
-                val image = BitmapFactory.decodeStream(inputStream).asImageBitmap()
-                imageState.painter = BitmapPainter(image)
+                imageState._inputStream.value = context.contentResolver.openInputStream(uri)
             }
         }
     )

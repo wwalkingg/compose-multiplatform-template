@@ -31,6 +31,7 @@ kotlin {
                 implementation(projects.feature.statusPage)
                 implementation(projects.feature.search)
                 implementation(projects.feature.me)
+                implementation(projects.feature.base)
             }
         }
         val androidMain by getting {

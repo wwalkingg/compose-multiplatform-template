@@ -6,19 +6,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import state.Success
 import state.UserInfoLoadState
+import java.io.InputStream
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ModifierUserInfoScreen(
     userInfoLoadState: UserInfoLoadState,
     onBackClick: () -> Unit,
-    onRefresh: () -> Unit
+    onRefresh: () -> Unit,
+    onUserInfoChange: (avatar: InputStream?, name: String) -> Unit
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = { TopBar(onBackClick) }) {
         Box(modifier = Modifier.fillMaxSize().padding(it)) {
             when (userInfoLoadState) {
                 UserInfoLoadState.Error -> {
-                    Success(modifier = Modifier.fillMaxSize())
+                    LoadingPage(modifier = Modifier.fillMaxSize())
                 }
 
                 UserInfoLoadState.Loading -> {
@@ -26,8 +28,11 @@ fun ModifierUserInfoScreen(
                 }
 
                 is UserInfoLoadState.Success -> {
-//                    Success(modifier = Modifier.fillMaxSize(), userInfoLoadState.userInfo)
-                    Success(modifier = Modifier.fillMaxSize())
+                    Success(
+                        modifier = Modifier.fillMaxSize(),
+                        userInfoLoadState.userInfo,
+                        onUserInfoChange = onUserInfoChange
+                    )
                 }
             }
         }

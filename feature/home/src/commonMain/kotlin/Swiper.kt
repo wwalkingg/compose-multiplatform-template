@@ -1,8 +1,6 @@
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
@@ -20,6 +19,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.delay
+import myImage.MyImage
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
@@ -31,7 +31,7 @@ internal fun Swiper(modifier: Modifier = Modifier, list: List<SwiperResp>) {
     LaunchedEffect(Unit) {
         while (true) {
             delay(3000L)
-            state.scrollToPage(state.currentPage + 1)
+            state.animateScrollToPage(state.currentPage + 1)
         }
     }
     HorizontalPager(
@@ -39,15 +39,14 @@ internal fun Swiper(modifier: Modifier = Modifier, list: List<SwiperResp>) {
         modifier = modifier,
         state = state
     ) { page ->
-        Card {
-//            AsyncImage(
-//                load = { loadImageBitmap(list[page].imageUrl) },
-//                painterFor = { remember { BitmapPainter(it) } },
-//                contentDescription = null,
-//                contentScale = ContentScale.FillBounds
-//            )
-        }
+        MyImage(
+            model = baseUrl + list[page].imageUrl,
+            modifier = Modifier.fillMaxSize(),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds
+        )
     }
+
 }
 
 @ExperimentalPagerApi

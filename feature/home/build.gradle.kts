@@ -20,6 +20,7 @@ kotlin {
                 implementation(libs.accompanist.pager)
                 implementation(libs.kotlin.stdlib)
                 implementation(projects.core.model)
+                implementation(projects.feature.base)
             }
         }
         val androidMain by getting {

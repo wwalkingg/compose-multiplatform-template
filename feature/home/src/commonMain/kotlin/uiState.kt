@@ -10,7 +10,7 @@ sealed interface SwiperUIState {
 sealed interface RecommendsUIState {
     object Fail : RecommendsUIState
     data class Success(
-        val list: List<String>
+        val list: Recommend
     ) : RecommendsUIState
 
     object Loading : RecommendsUIState

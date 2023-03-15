@@ -9,48 +9,43 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import pages.main.*
 import painterResources
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
 @Composable
 fun MainPage(
-    modifier: Modifier = Modifier,
-    modelState: MainModelState,
-    home: @Composable () -> Unit,
-    plan: @Composable () -> Unit,
-    person: @Composable () -> Unit,
-    statistics: @Composable () -> Unit,
-    me: @Composable () -> Unit
+    component: MainComponent
 ) {
     val pagerState = rememberPagerState(1)
-    LaunchedEffect(modelState.menuIndex) {
-        pagerState.scrollToPage(modelState.menuIndex)
+    LaunchedEffect(component.modelState.menuIndex) {
+        pagerState.scrollToPage(component.modelState.menuIndex)
     }
-    Scaffold(modifier, bottomBar = {
+    Scaffold(bottomBar = {
         BottomBar(currentIndex = pagerState.currentPage) {
-            modelState.menuIndex = it
+            component.modelState.menuIndex = it
         }
     }) {
         HorizontalPager(count = BottomMenus.values().size, state = pagerState) {
             when (it) {
                 0 -> {
-                    home()
+                    Home(component = component.home)
                 }
 
                 1 -> {
-                    plan()
+                    Plan(component = component.plan)
                 }
 
                 2 -> {
-                    person()
+                    Statistics(component = component.statistics)
                 }
 
                 3 -> {
-                    statistics()
+                    Person(component = component.person)
                 }
 
                 else -> {
-                    me()
+                    Me(component = component.me)
                 }
 
             }
@@ -60,7 +55,7 @@ fun MainPage(
 
 
 @Composable
-internal fun BottomBar(currentIndex:Int,onIndexChange: (Int) -> Unit) {
+internal fun BottomBar(currentIndex: Int, onIndexChange: (Int) -> Unit) {
     BottomAppBar {
         BottomMenus.values().forEachIndexed { index, it ->
             val selected = currentIndex == index

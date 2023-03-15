@@ -6,6 +6,20 @@ import io.ktor.http.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
+suspend inline fun HttpResponse.success(callback: HttpResponse.() -> Unit): HttpResponse {
+    val json by lazy { Json { ignoreUnknownKeys = true } }
+    if (status == HttpStatusCode.OK) {
+        val respString: String = body()
+        println(respString)
+        val response: ResponseTestWrapper = json.decodeFromString(respString)
+        if (response.code == 200) {
+            this.apply { callback() }
+        }
+        return call.response
+    }
+    return this
+}
+
 suspend inline fun <reified T> HttpResponse.success(callback: HttpResponse.(T) -> Unit): HttpResponse {
     val json by lazy { Json { ignoreUnknownKeys = true } }
     if (status == HttpStatusCode.OK) {
@@ -28,6 +42,7 @@ suspend inline fun HttpResponse.error(callback: HttpResponse.() -> Unit): HttpRe
     } else {
         val response: ResponseTestWrapper = body()
         if (response.code != 200) {
+            println("error:${response.code}")
             this.apply(callback)
             return this
         }

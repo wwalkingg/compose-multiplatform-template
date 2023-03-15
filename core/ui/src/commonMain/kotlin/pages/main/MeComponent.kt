@@ -5,6 +5,7 @@ import UserInfo
 import state.UserInfoLoadState
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
+import com.arkivanov.essenty.lifecycle.subscribe
 import httpClient
 import io.ktor.client.request.*
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +17,12 @@ import utils.success
 class MeComponent(componentContext: ComponentContext) :
     ComponentContext by componentContext {
     val modelState = instanceKeeper.getOrCreate { MeModelState() }
+
+    init {
+        lifecycle.subscribe(
+            onResume = { modelState.loadUserInfo() }
+        )
+    }
 }
 
 class MeModelState : ModelState() {
@@ -26,7 +33,7 @@ class MeModelState : ModelState() {
         loadUserInfo()
     }
 
-    private fun loadUserInfo() {
+    internal fun loadUserInfo() {
         coroutineScope.launch {
             _userInfoLoadState.emit(UserInfoLoadState.Loading)
             httpClient.get("/filter/getUserById").success<UserInfo> {

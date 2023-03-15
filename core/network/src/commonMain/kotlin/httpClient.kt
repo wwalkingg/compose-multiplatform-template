@@ -1,6 +1,8 @@
 import com.russhwolf.settings.get
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.engine.*
+import io.ktor.client.engine.ProxyBuilder.http
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
