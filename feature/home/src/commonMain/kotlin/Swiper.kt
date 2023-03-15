@@ -14,12 +14,12 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import buzz.lnmath.async_image.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.delay
-import myImage.MyImage
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
@@ -39,8 +39,8 @@ internal fun Swiper(modifier: Modifier = Modifier, list: List<SwiperResp>) {
         modifier = modifier,
         state = state
     ) { page ->
-        MyImage(
-            model = baseUrl + list[page].imageUrl,
+        AsyncImage(
+            url = "https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png",
             modifier = Modifier.fillMaxSize(),
             contentDescription = null,
             contentScale = ContentScale.FillBounds

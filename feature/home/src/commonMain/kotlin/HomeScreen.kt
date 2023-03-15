@@ -10,7 +10,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import buzz.lnmath.async_image.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,6 +38,12 @@ fun HomeScreen(
                     .shimmerBackground()
                 is SwiperUIState.Success -> Modifier
             }
+            AsyncImage(
+                url = "https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png",
+                modifier = Modifier.fillMaxSize(),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
             Swiper(
                 modifier = modifier0.fillMaxWidth().height(120.dp),
                 if (swiperUIState is SwiperUIState.Success) swiperUIState.list else emptyList()

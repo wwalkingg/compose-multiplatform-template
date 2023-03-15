@@ -29,6 +29,7 @@ include(":android")
 include(":desktop")
 include(":libs:resourceLoader")
 include(":libs:image-picker")
+include(":libs:async-image")
 
 include(":core:ui")
 include(":core:util")
