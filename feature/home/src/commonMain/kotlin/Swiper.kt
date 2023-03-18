@@ -30,20 +30,28 @@ internal fun Swiper(modifier: Modifier = Modifier, list: List<SwiperResp>) {
     val state = rememberPagerState(0)
     LaunchedEffect(Unit) {
         while (true) {
-            delay(3000L)
-            state.animateScrollToPage(state.currentPage + 1)
+            repeat(list.size) {
+                state.animateScrollToPage(it)
+                delay(3000L)
+            }
         }
     }
-    HorizontalPager(
-        count = list.size,
-        modifier = modifier,
-        state = state
-    ) { page ->
-        AsyncImage(
-            url = "https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png",
-            modifier = Modifier.fillMaxSize(),
-            contentDescription = null,
-            contentScale = ContentScale.FillBounds
+    Box(modifier) {
+        HorizontalPager(
+            count = list.size,
+            modifier = Modifier,
+            state = state
+        ) { page ->
+            AsyncImage(
+                url = baseUrl + list[page].imageUrl,
+                modifier = Modifier.fillMaxSize(),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
+        }
+        HorizontalPagerIndicator(
+            pagerState = state,
+            modifier = Modifier.padding(bottom = 10.dp).align(Alignment.BottomCenter)
         )
     }
 

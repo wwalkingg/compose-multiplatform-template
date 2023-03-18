@@ -17,7 +17,7 @@ import painterResources
 fun MainPage(
     component: MainComponent
 ) {
-    val pagerState = rememberPagerState(1)
+    val pagerState = rememberPagerState(0)
     LaunchedEffect(component.modelState.menuIndex) {
         pagerState.scrollToPage(component.modelState.menuIndex)
     }

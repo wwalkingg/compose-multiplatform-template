@@ -38,12 +38,6 @@ fun HomeScreen(
                     .shimmerBackground()
                 is SwiperUIState.Success -> Modifier
             }
-            AsyncImage(
-                url = "https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png",
-                modifier = Modifier.fillMaxSize(),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds
-            )
             Swiper(
                 modifier = modifier0.fillMaxWidth().height(120.dp),
                 if (swiperUIState is SwiperUIState.Success) swiperUIState.list else emptyList()

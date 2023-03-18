@@ -10,10 +10,12 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.arkivanov.decompose.DefaultComponentContext
+import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetbrains.lifecycle.LifecycleController
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 
 
+@OptIn(ExperimentalDecomposeApi::class)
 fun main() {
     Thread.setDefaultUncaughtExceptionHandler { t, e ->
         e.printStackTrace()
