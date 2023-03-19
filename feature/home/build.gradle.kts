@@ -4,34 +4,32 @@ plugins {
     alias(libs.plugins.android.library)
 }
 
-@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 kotlin {
     android()
     jvm("desktop") {
         jvmToolchain(11)
     }
+    @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(projects.libs.resourceLoader)
-                implementation(libs.accompanist.pager)
-                implementation(libs.kotlin.stdlib)
-                implementation(projects.core.model)
-                implementation(projects.libs.asyncImage)
+                api(compose.runtime)
+                api(compose.foundation)
+                api(compose.ui)
+                api(compose.material3)
+
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.appcompat)
-                implementation(libs.androidx.core.ktx)
+                compileOnly(libs.androidx.appcompat)
+                implementation(libs.androidx.activity.compose)
             }
         }
         val desktopMain by getting {
             dependencies {
-                implementation(compose.preview)
+                compileOnly(compose.preview)
+                api(compose.desktop.common)
             }
         }
     }
@@ -39,7 +37,6 @@ kotlin {
 
 android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res","src/commonMain/resources")
     defaultConfig {
         minSdk = 24
         compileSdk = 33

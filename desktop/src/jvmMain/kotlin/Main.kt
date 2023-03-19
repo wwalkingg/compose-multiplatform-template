@@ -1,11 +1,6 @@
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
@@ -24,15 +19,9 @@ fun main() {
     // Always create the root component outside Compose on the UI thread
     val root = runOnUiThread { RootComponent(DefaultComponentContext(lifecycle)) }
     application {
-        val state = rememberWindowState(size = DpSize(340.dp, 800.dp), position = WindowPosition(Alignment.TopEnd))
+        val state = rememberWindowState(size = DpSize(1000.dp, 800.dp), position = WindowPosition(Alignment.Center))
         LifecycleController(lifecycleRegistry = lifecycle, state)
-        Window(onCloseRequest = ::exitApplication, state = state) {
-            MaterialTheme(
-                colorScheme = lightColorScheme()
-            ) {
-                RootContent(root)
-            }
-        }
+        RootContent(root)
     }
 }
 

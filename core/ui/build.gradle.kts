@@ -15,23 +15,15 @@ kotlin {
             dependencies {
                 api(compose.runtime)
                 api(compose.foundation)
+                api(compose.ui)
                 api(compose.material3)
                 implementation(libs.decompose)
                 implementation(libs.decompose.compose.multiplatform)
                 api(libs.kotlinx.coroutines.core)
-                api(projects.feature.home)
-                api(projects.feature.login)
                 implementation(projects.core.network)
                 implementation(projects.core.model)
                 implementation(projects.core.datastore)
                 implementation(projects.libs.resourceLoader)
-                implementation(libs.accompanist.pager)
-                implementation(projects.feature.allCourse)
-                implementation(projects.feature.courseDetail)
-                implementation(projects.feature.statusPage)
-                implementation(projects.feature.search)
-                implementation(projects.feature.me)
-                implementation(projects.feature.base)
             }
         }
         val androidMain by getting {

@@ -10,4 +10,5 @@ abstract class ModelState : InstanceKeeper.Instance {
     override fun onDestroy() {
         coroutineScope.cancel()
     }
+
 }

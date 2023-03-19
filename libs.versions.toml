@@ -55,6 +55,7 @@ kotlinx-collections-immutable = "0.3.5"
 multiplatform-settings = "1.0.0"
 kamel-image = "0.4.0"
 kotlin-logging = "4.0.0-beta-23"
+openai-client = "3.1.1"
 [libraries]
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
@@ -146,6 +147,7 @@ multiplatformSettings-noArg = { group = "com.russhwolf", name = "multiplatform-s
 multiplatformSettings-coroutines =  { group = "com.russhwolf", name = "multiplatform-settings-coroutines", version.ref = "multiplatform-settings" }
 kamel-image =  { group = "com.alialbaali.kamel", name = "kamel-image", version.ref = "kamel-image" }
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging", version.ref = "kotlin-logging" }
+openai-client = { group = "com.aallam.openai", name = "openai-client", version.ref = "openai-client" }
 [bundles]
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

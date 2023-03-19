@@ -37,11 +37,5 @@ include(":core:model")
 include(":core:network")
 include(":core:datastore")
 
+
 include(":feature:home")
-include(":feature:login")
-include(":feature:all-course")
-include(":feature:course-detail")
-include(":feature:status-page")
-include(":feature:search")
-include(":feature:me")
-include(":feature:base")
