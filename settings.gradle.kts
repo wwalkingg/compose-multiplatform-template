@@ -25,6 +25,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-multiplatform-template"
 
+includeBuild("build-logic")
 include(":android")
 include(":desktop")
 include(":libs:resourceLoader")

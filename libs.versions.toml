@@ -146,6 +146,11 @@ multiplatformSettings-noArg = { group = "com.russhwolf", name = "multiplatform-s
 multiplatformSettings-coroutines =  { group = "com.russhwolf", name = "multiplatform-settings-coroutines", version.ref = "multiplatform-settings" }
 kamel-image =  { group = "com.alialbaali.kamel", name = "kamel-image", version.ref = "kamel-image" }
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging", version.ref = "kotlin-logging" }
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
 [bundles]
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
