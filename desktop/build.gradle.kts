@@ -1,8 +1,6 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.compose.multiplatform)
+//    alias(libs.plugins.compose.multiplatform)
 }
 
 group = "buzz.lnmath"
@@ -17,20 +15,20 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(projects.core.ui)
-                implementation(compose.desktop.currentOs)
+//                implementation(compose.desktop.currentOs)
                 implementation(libs.decompose)
                 implementation(libs.decompose.compose.multiplatform)
             }
         }
     }
 }
-compose.desktop {
-    application {
-        mainClass = "MainKt"
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "compose-multiplatform-template"
-            packageVersion = "1.0.0"
-        }
-    }
-}
+//compose.desktop {
+////    application {
+////        mainClass = "MainKt"
+////        nativeDistributions {
+////            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+////            packageName = "compose-multiplatform-template"
+////            packageVersion = "1.0.0"
+////        }
+////    }
+//}
